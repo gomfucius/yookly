@@ -1,0 +1,12 @@
+#raw() {
+    <footer class="container-fluid text-center">
+    <br /><br />
+}
+
+<p>&copy; Yookly.</a></p>
+
+Made with <a href="http://vapor.codes">Vapor</a> for learning.
+
+#raw() {
+    </footer>
+}

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+    <head>
+        #import("title")
+        #embed("global/embeds/header")
+    </head>
+    <body>
+        #import("body")
+        #embed("global/embeds/footer")
+    </body>
+</html>
