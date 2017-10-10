@@ -1,3 +1,3 @@
 {
-	"foo": "foo-bar"
+	"PN_PRIVATE_KEY": "$PN_PRIVATE_KEY"
 }
