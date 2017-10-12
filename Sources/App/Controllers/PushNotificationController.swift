@@ -61,7 +61,29 @@ final class PushNotificationsController
                 print(result)
             }
 
-//            completion(retString)
+            completion(retString)
+        }
+    }
+
+    func testLite(withToken deviceToken: String, completion: ((String) -> ()))
+    {
+        let payload = Payload()
+        payload.bodyLocKey = "Test push dayo lite."
+        payload.bodyLocArgs = ["Genkitest"]
+
+        let pushMessage = ApplePushMessage(topic: nil, priority: .immediately, payload: payload, sandbox: true)
+        vaporAPNS?.send(pushMessage, to: [deviceToken]) { result in
+            let retString: String
+            if case let .success(messageId, deviceToken, serviceStatus) = result, case .success = serviceStatus {
+                retString = serviceStatus.localizedDescription
+                print ("Success! \(messageId) \(deviceToken) \(serviceStatus)")
+            }
+            else {
+                retString = "fail 😭"
+                print(result)
+            }
+
+            completion(retString)
         }
     }
 }

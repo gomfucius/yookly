@@ -15,14 +15,44 @@ extension Droplet {
         get("/test", String.parameter) { [weak self] request in
             let deviceToken = try request.parameters.next(String.self)
 
+            let group = DispatchGroup()
+            group.enter()
+            var retString = "start"
+
             let anotherQueue = DispatchQueue(label: "com.summitisland.dungeons", qos: .utility)
             anotherQueue.async {
                 self?.pnController.test(withToken: deviceToken) { string in
+                    retString = string
+                    group.leave()
                 }
             }
 
+            group.wait()
+
             var json = JSON()
-            try json.set("hello", deviceToken)
+            try json.set("\(retString)", deviceToken)
+            return json
+        }
+
+        get("/testlite", String.parameter) { [weak self] request in
+            let deviceToken = try request.parameters.next(String.self)
+
+            let group = DispatchGroup()
+            group.enter()
+            var retString = "start"
+
+            let anotherQueue = DispatchQueue(label: "com.summitisland.dungeonslite", qos: .utility)
+            anotherQueue.async {
+                self?.pnController.testLite(withToken: deviceToken) { string in
+                    retString = string
+                    group.leave()
+                }
+            }
+
+            group.wait()
+
+            var json = JSON()
+            try json.set("\(retString)", deviceToken)
             return json
         }
 
