@@ -41,8 +41,9 @@ extension Droplet {
 
             group.wait()
 
+            let date = Date()
             var json = JSON()
-            try json.set("number1", number)
+            try json.set("\(date) number1", number)
             return json
         }
     }
