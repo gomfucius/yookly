@@ -49,7 +49,7 @@ final class PushNotificationsController
         payload.bodyLocKey = "Test push dayo."
         payload.bodyLocArgs = ["Genkitest"]
 
-        let pushMessage = ApplePushMessage(topic: nil, priority: .immediately, payload: payload, sandbox: true)
+        let pushMessage = ApplePushMessage(topic: nil, priority: .immediately, payload: payload, sandbox: false)
         vaporAPNS?.send(pushMessage, to: [deviceToken]) { result in
             let retString: String
             if case let .success(messageId, deviceToken, serviceStatus) = result, case .success = serviceStatus {
@@ -71,7 +71,7 @@ final class PushNotificationsController
         payload.bodyLocKey = "Test push dayo lite."
         payload.bodyLocArgs = ["Genkitest"]
 
-        let pushMessage = ApplePushMessage(topic: nil, priority: .immediately, payload: payload, sandbox: true)
+        let pushMessage = ApplePushMessage(topic: nil, priority: .immediately, payload: payload, sandbox: false)
         vaporAPNS?.send(pushMessage, to: [deviceToken]) { result in
             let retString: String
             if case let .success(messageId, deviceToken, serviceStatus) = result, case .success = serviceStatus {
